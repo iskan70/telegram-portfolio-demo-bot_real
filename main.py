@@ -2,6 +2,8 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram import F
+from aiogram.enums import ParseMode  # Добавили это
+from aiogram.client.default import DefaultBotProperties  # И это
 import asyncio
 import logging
 
@@ -11,7 +13,10 @@ TOKEN = "8521847895:AAEtigpMdfSZ1LdPe7KC7JBlwljxZVF9tOQ"
 # Твой ID админа
 ADMIN_ID = 494255577
 
-bot = Bot(token=TOKEN, parse_mode="HTML")
+# Новый способ задания parse_mode по умолчанию (HTML)
+defaults = DefaultBotProperties(parse_mode=ParseMode.HTML)
+
+bot = Bot(token=TOKEN, default=defaults)
 dp = Dispatcher()
 
 logging.basicConfig(level=logging.INFO)
